@@ -1,0 +1,23 @@
+feign:
+  giphy:
+    name: giphy
+    url: https://api.giphy.com/v1/
+    apiKey: PNkmxsUA18Tg5iUQOn4ZdHi8gquYFQUl
+  oer:
+    name: openexchangerates
+    url: https://openexchangerates.org/api/
+    apiKey: 2b03a09ac52043819bf430739bec0310
+    base: USD
+  client:
+    config:
+      openexchangerates:
+        defaultRequestHeaders:
+          Authorization: Token ${feign.oer.apiKey}
+        defaultQueryParameters:
+          base: ${feign.oer.base}
+      giphy:
+        defaultQueryParameters:
+          api_key: ${feign.giphy.apiKey}
+          limit: 1
+
+
